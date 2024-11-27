@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Hãy Làm Điều Bạn Muốn</h1>
+            <ul>
+                <li><a href="{{ url_for('login') }}">Đăng Nhập</a></li>
+                <li><a href="{{ url_for('register') }}">Đăng Ký</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h2>Chào Mừng Đến Với Website</h2>
+            <p>Khám phá những điều thú vị nhất.</p>
+            <a href="{{ url_for('login') }}" class="btn btn-primary">Bắt Đầu</a>
+        </section>
+    </main>
+</body>
+</html>

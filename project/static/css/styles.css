@@ -1,0 +1,175 @@
+/* Reset một số thuộc tính cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cài đặt màu nền cho toàn bộ trang */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5; /* Nền nhẹ, dễ nhìn, không quá sáng */
+    color: #333; /* Màu chữ tối để dễ đọc */
+}
+
+/* Phong cách cho header */
+header {
+    background-color: rgba(16, 27, 223, 0.9); /* Màu tối và trang nhã cho header */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #ddd; /* Đường viền mỏng cho header */
+}
+
+nav h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffdf00; /* Màu vàng cho hover */
+}
+
+/* Phong cách cho phần hero */
+.hero {
+    padding: 80px 20px; /* Tăng không gian cho phần này */
+    text-align: center;
+    background-color: #ffffff; /* Nền trắng với đổ bóng nhẹ */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Đổ bóng để phần này nổi bật */
+    border-radius: 8px;
+    margin: 50px auto;
+    max-width: 800px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    color: #1e2a36;
+    font-weight: 600;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.hero .btn {
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hero .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Cài đặt cho form */
+.container {
+    max-width: 480px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Đổ bóng cho form */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #1e2a36;
+}
+
+.form-group {
+    margin-bottom: 25px; /* Khoảng cách giữa các trường form */
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1.1rem;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Cải thiện liên kết */
+a {
+    color: #007bff;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Cài đặt cho bảng */
+.table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.table tr:hover {
+    background-color: #e3f2fd;
+}

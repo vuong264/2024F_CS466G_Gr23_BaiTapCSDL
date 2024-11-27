@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Người Dùng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Quản Lý Người Dùng</h2>
+
+        <!-- Form thêm người dùng mới -->
+        <form action="{{ url_for('add_user') }}" method="post" class="mt-4">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Tên người dùng" name="username" required>
+                </div>
+                <div class="col">
+                    <input type="email" class="form-control" placeholder="Email" name="email" required>
+                </div>
+                <div class="col">
+                    <input type="password" class="form-control" placeholder="Mật khẩu" name="password" required>
+                </div>
+                <div class="col">
+                    <select class="form-select" name="role_id" required>
+                        <option value="" disabled selected>Chọn vai trò</option>
+                        {% for role in roles %}
+                        <option value="{{ role.id }}">{{ role.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-success">Thêm người dùng</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Bảng danh sách người dùng -->
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên người dùng</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role.name }}</td>
+                    <td>{{ 'Khóa' if user.is_locked else 'Hoạt động' }}</td>
+                    <td>
+                        <!-- Nút Chỉnh sửa -->
+                        <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal{{ user.id }}">Chỉnh sửa</a>
+
+                        <!-- Nút Xóa -->
+                        <form action="{{ url_for('manage_users') }}" method="post" style="display:inline;">
+                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                            <input type="hidden" name="action" value="delete">
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        </form>
+                    </td>
+                </tr>
+
+                <!-- Modal Chỉnh sửa -->
+                <div class="modal fade" id="editUserModal{{ user.id }}" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form action="{{ url_for('edit_user') }}" method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editUserModalLabel">Chỉnh sửa Người dùng</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Tên người dùng</label>
+                                        <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="role_id" class="form-label">Vai trò</label>
+                                        <select class="form-select" id="role_id" name="role_id">
+                                            {% for role in roles %}
+                                            <option value="{{ role.id }}" {% if role.id == user.role_id %}selected{% endif %}>
+                                                {{ role.name }}
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Nút đăng xuất -->
+        <form action="{{ url_for('logout') }}" method="POST">
+            <button type="submit" class="btn btn-danger">Đăng xuất</button>
+        </form>
+        
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
